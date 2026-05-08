@@ -1,6 +1,6 @@
 from datetime import datetime
 from tracker.models.player import Player
-from tracker.models.game import BoardGame
+from tracker.models.boardgame import BoardGame
 from tracker.models.session import Session
 from tracker.models.result import GameResult
 
