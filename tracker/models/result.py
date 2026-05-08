@@ -1,12 +1,18 @@
-from tracker.models.player import Player
-from tracker.models.session import Session
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from tracker.storage.database import Base
 
-class Result:
-    def __init__(self, session: Session, player: Player, score: int, placement: int):
-        self.session = session
-        self.player = player
-        self.score = score
-        self.placement = placement
+class GameResult(Base):
+    __tablename__ = "results"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    score: Mapped[int] = mapped_column(nullable=False)
+    placement: Mapped[int] = mapped_column(nullable=False)
+    session_id: Mapped[int] = mapped_column(ForeignKey("sessions.id"))
+    player_id: Mapped[int] = mapped_column(ForeignKey("players.id"))
+
+    session: Mapped["Session"] = relationship("Session", back_populates="results")
+    player: Mapped["Player"] = relationship("Player")
 
     def __repr__(self):
-        return f"Session(name={self.date}, player={self.player}, score={self.score}))"
+        return f"GameResult(player={self.player}, score={self.score})"

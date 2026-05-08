@@ -2,36 +2,32 @@ from datetime import datetime
 from tracker.models.player import Player
 from tracker.models.game import BoardGame
 from tracker.models.session import Session
-from tracker.models.result import Result
+from tracker.models.result import GameResult
 
 def test_player():
-    player = Player("Karl")
+    player = Player(name = "Karl")
     assert player.name == "Karl"
 
-def test_player_no_email():
-    player = Player("Karl")
-    assert player.email == None
-
 def test_boardgame():
-    boardgame = BoardGame("Terraforming Mars")
+    boardgame = BoardGame(name = "Terraforming Mars")
     assert boardgame.name == "Terraforming Mars"
 
 def test_session():
     date = datetime.now()
-    boardgame = BoardGame("Terraforming Mars")
-    player = Player("Karl")
-    session = Session(date, boardgame, [player])
+    boardgame = BoardGame(name = "Terraforming Mars")
+    player = Player(name = "Karl")
+    session = Session(date = date, boardgame = boardgame)
 
     assert session.boardgame.name == "Terraforming Mars"
 
 def test_result():
     date = datetime.now()
-    boardgame = BoardGame("Terraforming Mars")
-    player = Player("Karl")
-    session = Session(date, boardgame, [player])
+    boardgame = BoardGame(name = "Terraforming Mars")
+    player = Player(name = "Karl")
+    session = Session(date = date, boardgame = boardgame)
     score = 17
     placement = 1
-    result = Result(session, player, score, placement)
+    result = GameResult(session = session, player = player, score = score, placement = placement)
     
     assert result.score == 17
     assert result.placement == 1

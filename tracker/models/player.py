@@ -1,8 +1,11 @@
-class Player:
-    def __init__(self, name: str, email: str = None):
-        self.name = name
-        self.email = email
+from sqlalchemy.orm import Mapped, mapped_column
+from tracker.storage.database import Base
 
-    # Defines what is shown when the object is printed. 
+class Player(Base):
+    __tablename__ = "players"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(nullable=False)
+
     def __repr__(self):
-        return f"Player(name={self.name!r})"
+        return f"Player(name={self.name})"

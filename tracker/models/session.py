@@ -1,12 +1,17 @@
 from datetime import datetime
-from tracker.models.player import Player
-from tracker.models.game import BoardGame
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from tracker.storage.database import Base
 
-class Session:
-    def __init__(self, date: datetime, boardgame: BoardGame, players: list[Player]):
-        self.date = date
-        self.boardgame = boardgame
-        self.players = players
+class Session(Base):
+    __tablename__ = "sessions"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    date: Mapped[datetime] = mapped_column(nullable=False)
+    boardgame_id: Mapped[int] = mapped_column(ForeignKey("boardgames.id"))
+
+    boardgame: Mapped["BoardGame"] = relationship("BoardGame")
+    results: Mapped[list["GameResult"]] = relationship("GameResult", back_populates="session")
 
     def __repr__(self):
-        return f"Session(name={self.date}, boardgame={self.boardgame})"
+        return f"Session(date={self.date}, boardgame={self.boardgame})"
