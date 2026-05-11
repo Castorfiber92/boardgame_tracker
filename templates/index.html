@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Boardgame Tracker</title>
+    </head>
+    <body>
+        <h1>Boardgame Tracker</h1>
+        <h2>Recent Sessions</h2>
+        {% for session in sessions %}
+            <div>
+                <p>{{ session.date }} - {{ session.boardgame.name }}</p>
+                <ul>
+                    {% for result in session.results %}
+                        <li>{{ result.player.name }} - {{ result.score }} points</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </body>
+</html>
