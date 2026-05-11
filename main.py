@@ -89,3 +89,19 @@ def log_session_submit(
         db.commit()
 
     return RedirectResponse(url="/", status_code=303)
+
+@app.get("/add-game", response_class=HTMLResponse)
+def add_game_page(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="add_game.html",
+        context={}
+    )
+
+@app.post("/add-game")
+def add_game_submit(name: str = Form(...)):
+    with get_session() as db:
+        game = BoardGame(name=name)
+        db.add(game)
+        db.commit()
+    return RedirectResponse(url="/log-session", status_code=303)
