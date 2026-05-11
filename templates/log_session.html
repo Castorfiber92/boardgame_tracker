@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Log Session</title>
+    </head>
+    <body>
+        <h1>Log a Game Session</h1>
+        <form action="/log-session" method="post">
+            
+            <h2>Boardgame</h2>
+            <select name="boardgame_id">
+                {% for game in boardgames %}
+                    <option value="{{ game.id }}">{{ game.name }}</option>
+                {% endfor %}
+            </select>
+
+            <h2>Date</h2>
+            <input type="datetime-local" name="date" value="{{ default_date }}">
+
+            <h2>Players</h2>
+            <div id="player-rows">
+                <div class="player-row">
+                    <select name="player_id">
+                        {% for player in players %}
+                            <option value="{{ player.id }}">{{ player.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="score" placeholder="Score">
+                    <input type="number" name="placement" placeholder="Placement">
+                </div>
+                <div class="player-row">
+                    <select name="player_id">
+                        {% for player in players %}
+                            <option value="{{ player.id }}">{{ player.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="score" placeholder="Score">
+                    <input type="number" name="placement" placeholder="Placement">
+                </div>
+            </div>
+
+            <button type="button" onclick="addPlayerRow()">+ Add player</button>
+            <br><br>
+            <button type="submit">Save session</button>
+
+        </form>
+    <script>
+    function addPlayerRow() {
+        // Find the container that holds all player rows
+        const container = document.getElementById("player-rows");
+        
+        // Grab the first row and make a copy of it
+        const firstRow = container.querySelector(".player-row");
+        const newRow = firstRow.cloneNode(true);
+        
+        // Add a remove button to the new row
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "Remove";
+        removeButton.onclick = function() { newRow.remove(); };
+        newRow.appendChild(removeButton);
+        
+        // Add the new row to the container
+        container.appendChild(newRow);
+    }
+    </script>    
+    </body>
+</html>
