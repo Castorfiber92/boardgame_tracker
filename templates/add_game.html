@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <title>Add Game</title>
-    </head>
-    <body>
+{% extends "base.html" %}
+
+{% block title %}Add Game{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Add New Game</h1>
-        <form action="/add-game" method="post">
-            <input type="text" name="name" placeholder="Game name">
-            <button type="submit">Save game</button>
-        </form>
-        <a href="/log-session">Back</a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-</html>
+        <a href="/log-session" class="btn btn-outline-secondary">Back</a>
+    </div>
+    <form action="/add-game" method="post">
+        <div class="mb-3">
+            <label class="form-label fw-bold">Game name</label>
+            <input type="text" name="name" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Save game</button>
+    </form>
+{% endblock %}
