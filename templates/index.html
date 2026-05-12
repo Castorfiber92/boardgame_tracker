@@ -30,20 +30,20 @@
                         <strong>{{ session.boardgame.name }}</strong> — {{ session.date.strftime("%d %b %Y, %H:%M") }}
                     </div>
                     <div class="card-body">
-                        <table class="table table-sm mb-0">
+                        <table class="table table-sm mb-0 w-auto">
                             <thead>
                                 <tr>
-                                    <th>Player</th>
-                                    <th>Score</th>
-                                    <th>Placement</th>
+                                    <th style="width: 120px">Player</th>
+                                    <th style="width: 30px">Score</th>
+                                    <th style="width: 30px">Placement</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for result in session.results %}
                                     <tr>
                                         <td>{{ result.player.name }}</td>
-                                        <td>{{ result.score }}</td>
                                         <td>{{ result.placement }}</td>
+                                        <td>{{ result.score }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

@@ -47,7 +47,9 @@ def get_sessions():
                 "boardgame": s.boardgame.name,
                 "players": [
                     {
-                        "player": r.player.name
+                        "player": r.player.name,
+                        "score": r.score,
+                        "placement": r.placement
                     }
                     for r in s.results
                 ]
