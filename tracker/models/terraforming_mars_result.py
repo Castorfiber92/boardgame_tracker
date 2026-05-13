@@ -13,8 +13,6 @@ class TerraformingMarsResult(Base):
     points_on_cards: Mapped[int] = mapped_column(nullable=False)
     points_from_cards: Mapped[int] = mapped_column(nullable=False)
     corporation: Mapped[str] = mapped_column(nullable=False)
-    prelude_1: Mapped[str] = mapped_column(nullable=True)
-    prelude_2: Mapped[str] = mapped_column(nullable=True)
 
     game_result: Mapped["GameResult"] = relationship("GameResult")
 

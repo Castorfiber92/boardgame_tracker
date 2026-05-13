@@ -124,3 +124,14 @@ def add_player_submit(name: str = Form(...)):
         db.add(player)
         db.commit()
     return RedirectResponse(url="/log-session", status_code=303)
+
+@app.get("/log-tm-session", response_class=HTMLResponse)
+def log_tm_session_page(request: Request):
+    with get_session() as db:
+        players = db.query(Player).all()
+    now = datetime.now().strftime("%Y-%m-%dT%H:%M")
+    return templates.TemplateResponse(
+        request=request,
+        name="log_tm_session_step1.html",
+        context={"players": players, "default_date": now}
+    )
