@@ -5,7 +5,9 @@ from tracker.storage.database import Base, engine, get_session
 from tracker.models.player import Player
 from tracker.models.boardgame import BoardGame
 from tracker.models.session import Session
-from tracker.models.result import GameResult
+from tracker.models.game_result import GameResult
+from tracker.models.terraforming_mars_session import TerraformingMarsSession
+from tracker.models.terraforming_mars_result import TerraformingMarsResult
 
 # api folder
 from tracker.api.players import router as players_router

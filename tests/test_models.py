@@ -2,7 +2,7 @@ from datetime import datetime
 from tracker.models.player import Player
 from tracker.models.boardgame import BoardGame
 from tracker.models.session import Session
-from tracker.models.result import GameResult
+from tracker.models.game_result import GameResult
 
 def test_player():
     player = Player(name = "Karl")

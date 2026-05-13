@@ -3,7 +3,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from tracker.storage.database import Base
 
 class GameResult(Base):
-    __tablename__ = "results"
+    __tablename__ = "game_results"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     score: Mapped[int] = mapped_column(nullable=False)

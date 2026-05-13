@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from tracker.api.schemas import SessionCreate, GameResultCreate
 from tracker.models.session import Session
-from tracker.models.result import GameResult
+from tracker.models.game_result import GameResult
 
 from tracker.storage.database import get_session
 
