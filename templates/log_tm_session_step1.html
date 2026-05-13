@@ -20,58 +20,73 @@
                 <label class="form-label fw-bold">Generations</label>
                 <input type="number" name="generations" class="form-control" placeholder="Optional">
             </div>
-            <div class="col-6">
-                <label class="form-label fw-bold">With Turmoil?</label>
-                <select name="with_turmoil" class="form-select">
-                    <option value="false">No</option>
-                    <option value="true">Yes</option>
-                </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label fw-bold">Expansions</label>
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="venux_next" value="true" checked>
+                        <label class="form-check-label">Venus Next</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="prelude_2" value="true" checked>
+                        <label class="form-check-label">Prelude 2</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="colonies" value="true" checked>
+                        <label class="form-check-label">Colonies</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="prelude" value="true" checked>
+                        <label class="form-check-label">Prelude</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="turmoil" value="true">
+                        <label class="form-check-label">Turmoil</label>
+                    </div>
+                </div>
             </div>
         </div>
 
         <label class="form-label fw-bold">Players</label>
         <div class="row g-2 mb-1">
-            <div class="col-3"><small class="text-muted">Player</small></div>
-            <div class="col-3"><small class="text-muted">Corporation</small></div>
-            <div class="col-3"><small class="text-muted">Prelude 1</small></div>
-            <div class="col-3"><small class="text-muted">Prelude 2</small></div>
+            <div class="col-6"><small class="text-muted">Player</small></div>
+            <div class="col-6"><small class="text-muted">Corporation</small></div>
         </div>
 
         <div id="player-rows">
             <div class="player-row row g-2 mb-2">
-                <div class="col-3">
+                <div class="col-6">
                     <select name="player_id" class="form-select">
                         {% for player in players %}
                             <option value="{{ player.id }}">{{ player.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-3">
+                <div class="col-6">
                     <input type="text" name="corporation" placeholder="Corporation" class="form-control">
-                </div>
-                <div class="col-3">
-                    <input type="text" name="prelude_1" placeholder="Optional" class="form-control">
-                </div>
-                <div class="col-3">
-                    <input type="text" name="prelude_2" placeholder="Optional" class="form-control">
                 </div>
             </div>
             <div class="player-row row g-2 mb-2">
-                <div class="col-3">
+                <div class="col-6">
                     <select name="player_id" class="form-select">
                         {% for player in players %}
                             <option value="{{ player.id }}">{{ player.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-3">
+                <div class="col-6">
                     <input type="text" name="corporation" placeholder="Corporation" class="form-control">
-                </div>
-                <div class="col-3">
-                    <input type="text" name="prelude_2" placeholder="Optional" class="form-control">
-                </div>
-                <div class="col-3">
-                    <input type="text" name="prelude_2" placeholder="Optional" class="form-control">
                 </div>
             </div>
         </div>
