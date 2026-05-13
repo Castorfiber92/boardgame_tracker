@@ -135,3 +135,38 @@ def log_tm_session_page(request: Request):
         name="log_tm_session_step1.html",
         context={"players": players, "default_date": now}
     )
+
+from typing import List
+
+@app.post("/log-tm-session/step2", response_class=HTMLResponse)
+def log_tm_session_step2(
+    request: Request,
+    date: str = Form(...),
+    generations: int = Form(None),
+    turmoil: bool = Form(False),
+    venus_next: bool = Form(False),
+    colonies: bool = Form(False),
+    prelude: bool = Form(False),
+    prelude_2: bool = Form(False),
+    player_id: List[int] = Form(...),
+    corporation: List[str] = Form(...)
+):
+    with get_session() as db:
+        players = [db.get(Player, pid) for pid in player_id]
+    
+    return templates.TemplateResponse(
+        request=request,
+        name="log_tm_session_step2.html",
+        context={
+            "date": date,
+            "generations": generations,
+            "turmoil": turmoil,
+            "venus_next": venus_next,
+            "colonies": colonies,
+            "prelude": prelude,
+            "prelude_2": prelude_2,
+            "player_ids": player_id,
+            "corporations": corporation,
+            "players": players
+        }
+    )

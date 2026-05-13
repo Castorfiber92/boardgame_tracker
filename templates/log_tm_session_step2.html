@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Log TM Session - Scoring{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Terraforming Mars</h1>
+        <a href="/log-tm-session" class="btn btn-outline-secondary">Back</a>
+    </div>
+
+    <form action="/log-tm-session/submit" method="post">
+        
+        <!-- Hidden fields from step 1 -->
+        <input type="hidden" name="date" value="{{ date }}">
+        <input type="hidden" name="generations" value="{{ generations }}">
+        <input type="hidden" name="turmoil" value="{{ turmoil }}">
+        <input type="hidden" name="venus_next" value="{{ venus_next }}">
+        <input type="hidden" name="colonies" value="{{ colonies }}">
+        <input type="hidden" name="prelude" value="{{ prelude }}">
+        <input type="hidden" name="prelude_2" value="{{ prelude_2 }}">
+        {% for pid in player_ids %}
+            <input type="hidden" name="player_id" value="{{ pid }}">
+        {% endfor %}
+        {% for corp in corporations %}
+            <input type="hidden" name="corporation" value="{{ corp }}">
+        {% endfor %}
+
+        <!-- Scoring table -->
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>TR</th>
+                        <th>M&A</th>
+                        <th>Board</th>
+                        <th>On Cards</th>
+                        <th>From Cards</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                        <tr>
+                            <td class="align-middle">{{ player.name }}</td>
+                            <td><input type="number" name="tr_rating" class="form-control form-control-sm" style="width: 70px"></td>
+                            <td><input type="number" name="points_milestones_and_awards" class="form-control form-control-sm" style="width: 70px"></td>
+                            <td><input type="number" name="points_board" class="form-control form-control-sm" style="width: 70px"></td>
+                            <td><input type="number" name="points_on_cards" class="form-control form-control-sm" style="width: 70px"></td>
+                            <td><input type="number" name="points_from_cards" class="form-control form-control-sm" style="width: 70px"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">Save session</button>
+
+    </form>
+{% endblock %}
