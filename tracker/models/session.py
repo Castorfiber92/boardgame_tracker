@@ -8,6 +8,7 @@ class Session(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     date: Mapped[datetime] = mapped_column(nullable=False)
+    notes: Mapped[str] = mapped_column(nullable=True)
     boardgame_id: Mapped[int] = mapped_column(ForeignKey("boardgames.id"))
 
     boardgame: Mapped["BoardGame"] = relationship("BoardGame")
